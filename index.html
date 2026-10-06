@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>da3m — دعم</title>
+  <meta name="description" content="da3m : la gestion simple et élégante des écoles de soutien (séances, élèves, paiements, calendrier partagé).">
+
+  <!-- PWA : installation sur l'écran d'accueil -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0E1B40">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="da3m">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Fraunces:ital,wght@1,800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap">
+  <style>
+    :root { --p: #0E1B40; --p2: #1F3470; --a: #E8B84A; --bg: #F5F1E6; --card: #fff; --tx: #1b2233; --mu: #6b7385; --ln: #e4e0d3; }
+    :root[data-mode="dark"] { --bg: #0b1020; --card: #151c33; --tx: #e9ecf5; --mu: #9aa3bd; --ln: #263055; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { display: flex; flex-direction: column; font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif; color: var(--tx); background: var(--bg); }
+    [hidden] { display: none !important; }
+    .install-banner { display: none; align-items: center; gap: 12px; margin: 8px; padding: 10px 12px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, var(--p), var(--p2)); box-shadow: 0 2px 12px rgba(0,0,0,.25); position: relative; z-index: 5; }
+    .install-banner img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+    .install-text { display: grid; gap: 1px; flex: 1; min-width: 0; } .install-text strong { font-size: 1rem; } .install-sub, .install-ios { font-size: .85rem; opacity: .9; }
+    #install-btn { flex: none; padding: 9px 16px; border: 0; border-radius: 10px; background: var(--a); color: #3a2a05; font: inherit; font-weight: 700; cursor: pointer; }
+    .install-close { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; color: #fff; font-size: 1.4rem; opacity: .75; cursor: pointer; }
+    #app { flex: 1; width: 100%; border: 0; } #app[hidden] { display: none; }
+
+    /* accueil */
+    .landing { flex: 1; overflow: auto; background: radial-gradient(circle at 15% 0%, rgba(232,184,74,.28), transparent 40%), radial-gradient(circle at 100% 100%, rgba(80,110,220,.35), transparent 45%), linear-gradient(160deg, #070E26, var(--p) 45%, var(--p2)); color: #fff; padding: 24px 16px 40px; }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    .hero { text-align: center; padding: 28px 0 10px; }
+    .hero img.logo { width: 112px; height: 112px; border-radius: 28px; box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+    .hero h1 { margin: 16px 0 6px; font: italic 800 2.6rem/1.1 'Fraunces', Georgia, serif; letter-spacing: .01em; } .hero h1 span { color: var(--a); font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-style: normal; font-weight: 700; margin-inline-start: 10px; }
+    .hero p { margin: 0 auto; max-width: 560px; opacity: .88; font-size: 1.05rem; }
+    .panel { margin: 26px auto 0; max-width: 430px; background: rgba(255,255,255,.96); color: var(--tx); border-radius: 24px; padding: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    :root[data-mode="dark"] .panel { background: rgba(21,28,51,.96); }
+    .panel h2 { margin: 0 0 12px; font-size: 1.1rem; } .panel label { display: block; font-size: .82rem; color: var(--mu); font-weight: 600; margin: 10px 0 4px; }
+    .panel input, .panel textarea { width: 100%; padding: 11px 12px; border: 1.5px solid var(--ln); border-radius: 12px; font: inherit; color: var(--tx); background: var(--card); outline: none; } .panel input:focus, .panel textarea:focus { border-color: var(--p2); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 14px; padding: 12px 16px; border: 0; border-radius: 13px; font: inherit; font-weight: 700; cursor: pointer; color: #3a2a05; background: linear-gradient(120deg, #F3CD6E, var(--a)); }
+    .btn.ghost { background: transparent; color: var(--p2); box-shadow: inset 0 0 0 1.5px var(--ln); } :root[data-mode="dark"] .btn.ghost { color: var(--a); }
+    .msg { min-height: 1.3em; margin-top: 8px; font-size: .88rem; } .msg.err { color: #b3261e; } .msg.ok { color: #177a4b; }
+    .links { text-align: center; margin-top: 12px; font-size: .88rem; } .links a { color: var(--p2); cursor: pointer; text-decoration: underline; } :root[data-mode="dark"] .links a { color: var(--a); }
+    .features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 34px 0 6px; }
+    .feat { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 16px; backdrop-filter: blur(4px); } .feat b { display: block; color: var(--a); margin-bottom: 4px; } .feat span { font-size: .9rem; opacity: .88; }
+    .trust { text-align: center; margin-top: 26px; opacity: .9; } .trust h3 { font-size: .9rem; font-weight: 600; opacity: .8; margin: 0 0 10px; } .trust .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; } .trust .chips span { padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,.12); font-size: .88rem; }
+    .foot { text-align: center; font-size: .78rem; opacity: .65; margin-top: 30px; } .foot a { color: inherit; }
+    .prefs { position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); inset-inline-end: 10px; z-index: 6; display: flex; gap: 6px; direction: ltr; }
+    .prefs select, .prefs button { height: 32px; border: 1px solid rgba(255,255,255,.4); border-radius: 16px; background: rgba(0,0,0,.25); color: #fff; font: .8rem system-ui; padding: 0 10px; cursor: pointer; }
+    .prefs[data-in="1"] { display: none; }
+    #launching { flex: 1; display: grid; place-items: center; text-align: center; color: var(--mu); } #launching .sp { width: 34px; height: 34px; border: 3px solid var(--ln); border-top-color: var(--a); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 12px; } @keyframes spin { to { transform: rotate(360deg); } }
+    details { margin-top: 14px; font-size: .85rem; color: var(--mu); } details summary { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="install" class="install-banner" role="region">
+    <img src="icon-192.png" alt="">
+    <div class="install-text"><strong id="i-title">Installer da3m</strong><span class="install-sub" id="i-sub">Accès direct depuis l'écran d'accueil.</span><span class="install-ios" id="i-ios" hidden></span></div>
+    <button id="install-btn" type="button">Installer</button>
+    <button id="install-close" class="install-close" type="button" aria-label="Fermer">×</button>
+  </div>
+
+  <div id="prefs" class="prefs"><select id="lang" aria-label="Langue"><option value="fr">Français</option><option value="ar">العربية</option><option value="en">English</option></select><button id="mode" type="button" aria-label="Mode clair / sombre">◐</button></div>
+
+  <main id="landing" class="landing">
+    <div class="wrap">
+      <div class="hero">
+        <img class="logo" src="icon-512.png" alt="da3m">
+        <h1>da3m<span>دعم</span></h1>
+        <p data-t="tag">La gestion simple et élégante de votre école de soutien : séances, élèves, paiements et calendrier partagé.</p>
+      </div>
+
+      <div class="panel" id="p-open">
+        <h2 data-t="open">Ouvrir mon espace</h2>
+        <label data-t="code" for="code">Code de l'école</label>
+        <input id="code" autocapitalize="characters" autocomplete="off" placeholder="AMAL" style="text-transform:uppercase">
+        <div id="code-msg" class="msg err"></div>
+        <button id="open-btn" class="btn" type="button" data-t="openbtn">Ouvrir</button>
+        <div class="links"><a id="to-trial" data-t="trialLink">Vous dirigez une école ? Demandez un essai gratuit</a></div>
+        <details id="adv"><summary data-t="adv">Avancé</summary>
+          <label for="url" data-t="url">Adresse de l'application (…/exec)</label><input id="url" placeholder="https://script.google.com/macros/s/…/exec">
+          <button id="url-save" class="btn ghost" type="button" data-t="save">Enregistrer</button></details>
+      </div>
+
+      <div class="panel" id="p-trial" hidden>
+        <h2 data-t="trialTitle">Demander un essai gratuit</h2>
+        <label data-t="tSchool" for="t-ecole">Nom de l'école</label><input id="t-ecole" maxlength="80">
+        <label data-t="tName" for="t-nom">Votre nom</label><input id="t-nom" maxlength="80">
+        <label data-t="tMail" for="t-email">E-mail</label><input id="t-email" type="email" maxlength="120">
+        <label data-t="tTel" for="t-tel">Téléphone</label><input id="t-tel" type="tel" maxlength="30">
+        <label data-t="tMsg" for="t-msg">Message (facultatif)</label><textarea id="t-msg" rows="3" maxlength="600"></textarea>
+        <input id="t-site" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <div id="trial-msg" class="msg"></div>
+        <button id="trial-btn" class="btn" type="button" data-t="send">Envoyer la demande</button>
+        <div class="links"><a id="to-open" data-t="back">← Retour</a></div>
+      </div>
+
+      <div class="features">
+        <div class="feat"><b data-t="f1t">📅 Un calendrier pour toute l'école</b><span data-t="f1">Élèves, parents et professeurs voient les séances ; changement d'horaire = notification immédiate.</span></div>
+        <div class="feat"><b data-t="f2t">💳 Paiements par sessions</b><span data-t="f2">Prorata automatique, reçus numérotés, relances avant et après l'échéance.</span></div>
+        <div class="feat"><b data-t="f3t">🎓 Suivi pédagogique</b><span data-t="f3">Appel, notes, évaluations mensuelles, fichiers et messages aux parents.</span></div>
+        <div class="feat"><b data-t="f4t">🌍 FR · العربية · EN</b><span data-t="f4">Interface complète en trois langues, thèmes de couleurs au choix de l'école.</span></div>
+      </div>
+      <div class="trust" id="trust" hidden><h3 data-t="trust">Elles nous font confiance</h3><div class="chips" id="trust-list"></div></div>
+      <div class="foot">© 2026 Rayane M. — <a href="confidentialite.html" data-t="privacy">Confidentialité</a></div>
+    </div>
+  </main>
+
+  <div id="launching" hidden><div><div class="sp"></div><div data-t="launch">Ouverture de votre espace…</div></div></div>
+  <iframe id="app" title="da3m" hidden allow="clipboard-write; fullscreen"></iframe>
+
+  <script>
+  (function () {
+    var D = {
+      fr: { tag: "La gestion simple et élégante de votre école de soutien : séances, élèves, paiements et calendrier partagé.", open: 'Ouvrir mon espace', code: "Code de l'école", openbtn: 'Ouvrir', trialLink: 'Vous dirigez une école ? Demandez un essai gratuit', adv: 'Avancé', url: "Adresse de l'application (…/exec)", save: 'Enregistrer', trialTitle: 'Demander un essai gratuit', tSchool: "Nom de l'école", tName: 'Votre nom', tMail: 'E-mail', tTel: 'Téléphone', tMsg: 'Message (facultatif)', send: 'Envoyer la demande', back: '← Retour',
+        f1t: "📅 Un calendrier pour toute l'école", f1: "Élèves, parents et professeurs voient les séances ; changement d'horaire = notification immédiate.", f2t: '💳 Paiements par sessions', f2: 'Prorata automatique, reçus numérotés, relances avant et après l\'échéance.', f3t: '🎓 Suivi pédagogique', f3: 'Appel, notes, évaluations mensuelles, fichiers et messages aux parents.', f4t: '🌍 FR · العربية · EN', f4: "Interface complète en trois langues, thèmes de couleurs au choix de l'école.", trust: 'Elles nous font confiance', privacy: 'Confidentialité', launch: 'Ouverture de votre espace…',
+        needCode: "Saisissez le code de votre école.", needUrl: "Adresse de l'application manquante : ouvrez « Avancé » et collez l'adresse du déploiement (…/exec).", sent: 'Merci ! Nous vous recontactons très vite.', needMail: "Indiquez l'école et une adresse e-mail valide.", installT: 'Installer da3m', installS: "Accès direct depuis l'écran d'accueil.", installB: 'Installer', installIos: "Dans Safari : Partager → « Sur l'écran d'accueil »." },
+      ar: { tag: 'إدارة بسيطة وأنيقة لمدرسة الدعم: الحصص والتلاميذ والمدفوعات والجدول المشترك.', open: 'فتح فضائي', code: 'رمز المدرسة', openbtn: 'فتح', trialLink: 'تديرون مدرسة؟ اطلبوا تجربة مجانية', adv: 'خيارات متقدمة', url: 'عنوان التطبيق (…/exec)', save: 'حفظ', trialTitle: 'طلب تجربة مجانية', tSchool: 'اسم المدرسة', tName: 'اسمكم', tMail: 'البريد الإلكتروني', tTel: 'الهاتف', tMsg: 'رسالة (اختياري)', send: 'إرسال الطلب', back: 'رجوع →',
+        f1t: '📅 جدول واحد للمدرسة', f1: 'التلاميذ والأولياء والأساتذة يرون الحصص؛ تغيير التوقيت = إشعار فوري.', f2t: '💳 مدفوعات بالحزم', f2: 'احتساب نسبي تلقائي، وصولات مرقمة، وتذكيرات قبل الاستحقاق وبعده.', f3t: '🎓 المتابعة البيداغوجية', f3: 'تسجيل الحضور، النقاط، التقييم الشهري، الملفات ورسائل للأولياء.', f4t: '🌍 FR · العربية · EN', f4: 'واجهة كاملة بثلاث لغات وألوان تختارها المدرسة.', trust: 'مدارس تثق بنا', privacy: 'الخصوصية', launch: 'جارٍ فتح فضائكم…',
+        needCode: 'أدخلوا رمز مدرستكم.', needUrl: 'عنوان التطبيق مفقود: افتحوا «خيارات متقدمة» والصقوا عنوان النشر (…/exec).', sent: 'شكرًا! سنتصل بكم قريبًا.', needMail: 'أدخلوا اسم المدرسة وبريدًا إلكترونيًا صحيحًا.', installT: 'تثبيت da3m', installS: 'وصول مباشر من الشاشة الرئيسية.', installB: 'تثبيت', installIos: 'في Safari: مشاركة ← «إضافة إلى الشاشة الرئيسية».' },
+      en: { tag: 'Simple, elegant management for your tutoring school: classes, students, payments and a shared calendar.', open: 'Open my space', code: 'School code', openbtn: 'Open', trialLink: 'Run a school? Request a free trial', adv: 'Advanced', url: 'App address (…/exec)', save: 'Save', trialTitle: 'Request a free trial', tSchool: 'School name', tName: 'Your name', tMail: 'E-mail', tTel: 'Phone', tMsg: 'Message (optional)', send: 'Send request', back: '← Back',
+        f1t: '📅 One calendar for the whole school', f1: 'Students, parents and teachers see the classes; a schedule change = instant notification.', f2t: '💳 Session-based payments', f2: 'Automatic proration, numbered receipts, reminders before and after the due date.', f3t: '🎓 Learning follow-up', f3: 'Attendance, grades, monthly evaluations, files and messages to parents.', f4t: '🌍 FR · العربية · EN', f4: 'Fully translated interface, colour themes chosen by each school.', trust: 'Trusted by', privacy: 'Privacy', launch: 'Opening your space…',
+        needCode: 'Enter your school code.', needUrl: 'App address missing: open "Advanced" and paste the deployment address (…/exec).', sent: 'Thank you! We will contact you shortly.', needMail: 'Enter the school and a valid e-mail.', installT: 'Install da3m', installS: 'Direct access from your home screen.', installB: 'Install', installIos: 'In Safari: Share → "Add to Home Screen".' }
+    };
+    var APP_URL = ''; // secours si exec.json est illisible : adresse /exec du déploiement Apps Script
+    var URL_RE = /^https:\/\/script\.google\.com\/(a\/macros\/[\w.-]+|macros)\/s\/[\w-]+\/(exec|dev)$/; var CODE_RE = /^[A-Z0-9][A-Z0-9_-]{1,19}$/;
+    var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } }, del: function (k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } } };
+    var $ = function (id) { return document.getElementById(id); };
+    var LANG = store.get('d3-lang') || ((navigator.language || 'fr').slice(0, 2) === 'ar' ? 'ar' : (navigator.language || '').slice(0, 2) === 'en' ? 'en' : 'fr');
+    function T(k) { return (D[LANG] && D[LANG][k]) || D.fr[k] || k; }
+    function mode() { var m = store.get('d3-mode') || 'auto'; return m === 'auto' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : m; }
+    function paint() {
+      document.documentElement.lang = LANG; document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr'; document.documentElement.setAttribute('data-mode', mode()); $('lang').value = LANG;
+      document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T(el.getAttribute('data-t')); });
+      $('i-title').textContent = T('installT'); $('i-sub').textContent = T('installS'); $('install-btn').textContent = T('installB'); $('i-ios').textContent = T('installIos');
+    }
+    function setLang(l, fromApp) { LANG = l; store.set('d3-lang', l); paint(); if (!fromApp) tellApp({ d3Lang: l }); }
+    function tellApp(m) { try { $('app').contentWindow.postMessage(m, '*'); } catch (e) { /* ignore */ } }
+    $('lang').addEventListener('change', function () { setLang($('lang').value); });
+    $('mode').addEventListener('click', function () { store.set('d3-mode', mode() === 'dark' ? 'light' : 'dark'); paint(); });
+    window.addEventListener('message', function (e) { if (e.data && /^(fr|ar|en)$/.test(e.data.d3Lang)) setLang(e.data.d3Lang, true); });
+
+    var q = (/[?&]c=([\w-]+)/.exec(location.search) || [])[1]; if (q && CODE_RE.test(q.toUpperCase())) store.set('d3-code', q.toUpperCase());
+    if (/[?&]reset\b/.test(location.search)) { store.del('d3-code'); store.del('d3-url'); }
+    $('code').value = store.get('d3-code') || ''; $('url').value = store.get('d3-url') || '';
+    function remoteUrl() { return new Promise(function (resolve) { var done = false; var t = setTimeout(function () { if (!done) { done = true; resolve(''); } }, 3000); fetch('exec.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { if (!done) { done = true; clearTimeout(t); resolve(j && j.url || ''); } }).catch(function () { if (!done) { done = true; clearTimeout(t); resolve(''); } }); }); }
+    function baseUrl() { return remoteUrl().then(function (r) { var c = [store.get('d3-url'), r, APP_URL].filter(function (u) { return u && URL_RE.test(u); }); return c[0] || ''; }); }
+
+    function launch() {
+      var code = $('code').value.toUpperCase().replace(/[^A-Z0-9_-]/g, ''); if (!CODE_RE.test(code)) { $('code-msg').textContent = T('needCode'); return; }
+      $('code-msg').textContent = ''; store.set('d3-code', code); $('landing').hidden = true; $('launching').hidden = false;
+      baseUrl().then(function (base) {
+        if (!base) { $('launching').hidden = true; $('landing').hidden = false; $('adv').open = true; $('code-msg').textContent = T('needUrl'); return; }
+        var finish = function (url) { var dest = url + '#c=' + encodeURIComponent(code) + '&l=' + LANG + '&t=' + mode(); $('launching').hidden = true; $('prefs').setAttribute('data-in', '1'); $('app').src = dest; $('app').hidden = false; };
+        var done = false; var tm = setTimeout(function () { if (!done) { done = true; finish(base); } }, 4000);
+        fetch(base + '?resolve=' + encodeURIComponent(code), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { if (done) return; done = true; clearTimeout(tm); finish(j && j.ok && j.exec_url && URL_RE.test(j.exec_url) ? j.exec_url : base); }).catch(function () { if (!done) { done = true; clearTimeout(tm); finish(base); } });
+      });
+    }
+    $('open-btn').addEventListener('click', launch); $('code').addEventListener('keydown', function (e) { if (e.key === 'Enter') launch(); });
+    $('url-save').addEventListener('click', function () { var u = $('url').value.trim(); if (u && !URL_RE.test(u)) { $('code-msg').textContent = T('needUrl'); return; } if (u) store.set('d3-url', u); else store.del('d3-url'); $('code-msg').textContent = ''; });
+    $('to-trial').addEventListener('click', function () { $('p-open').hidden = true; $('p-trial').hidden = false; });
+    $('to-open').addEventListener('click', function () { $('p-trial').hidden = true; $('p-open').hidden = false; });
+    $('trial-btn').addEventListener('click', function () {
+      var email = $('t-email').value.trim(); var ecole = $('t-ecole').value.trim(); var msg = $('trial-msg'); msg.className = 'msg';
+      if (ecole.length < 2 || !/^\S+@\S+\.\S+$/.test(email)) { msg.className = 'msg err'; msg.textContent = T('needMail'); return; }
+      var payload = { ecole: ecole, nom: $('t-nom').value, email: email, tel: $('t-tel').value, message: $('t-msg').value, site: $('t-site').value };
+      var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      baseUrl().then(function (base) { if (!base) { msg.className = 'msg err'; msg.textContent = T('needUrl'); return; } return fetch(base + '?prospect=' + b64).then(function (r) { return r.json(); }).then(function (j) { if (j && j.ok) { msg.className = 'msg ok'; msg.textContent = T('sent'); $('trial-btn').hidden = true; } else { msg.className = 'msg err'; msg.textContent = (j && j.error) || 'Erreur'; } }); }).catch(function () { msg.className = 'msg err'; msg.textContent = 'Erreur réseau'; });
+    });
+    baseUrl().then(function (base) { if (!base) return; fetch(base + '?ecoles').then(function (r) { return r.json(); }).then(function (j) { if (j && j.ok && j.ecoles && j.ecoles.length) { $('trust').hidden = false; var list = $('trust-list'); j.ecoles.slice(0, 20).forEach(function (e) { var s = document.createElement('span'); s.textContent = e.nom; list.appendChild(s); }); } }).catch(function () { /* facultatif */ }); });
+
+    /* ---- installation (PWA) ---- */
+    var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; var banner = $('install'); var deferred = null;
+    var dismissed = Number(store.get('d3-install-closed') || 0); var recently = Date.now() - dismissed < 7 * 86400000;
+    function showBanner(ios) { if (standalone || recently) return; banner.style.display = 'flex'; $('i-ios').hidden = !ios; $('install-btn').hidden = !!ios; }
+    window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; showBanner(false); });
+    $('install-btn').addEventListener('click', function () { if (!deferred) return; deferred.prompt(); deferred.userChoice.then(function () { deferred = null; banner.style.display = 'none'; }); });
+    $('install-close').addEventListener('click', function () { banner.style.display = 'none'; store.set('d3-install-closed', String(Date.now())); });
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !standalone) showBanner(true);
+    window.addEventListener('appinstalled', function () { banner.style.display = 'none'; });
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () { /* ignore */ });
+
+    paint();
+    // Application installée ou lien d'invitation (?go) : ouverture directe ; sinon écran d'accueil (c'est là que le navigateur propose l'installation).
+    if (store.get('d3-code') && (standalone || /[?&]go\b/.test(location.search))) launch();
+  })();
+  </script>
+</body>
+</html>
