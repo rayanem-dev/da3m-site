@@ -84,9 +84,6 @@
         <div id="code-msg" class="msg err"></div>
         <button id="open-btn" class="btn" type="button" data-t="openbtn">Ouvrir</button>
         <div class="links"><a id="to-trial" data-t="trialLink">Vous dirigez une école ? Demandez un essai gratuit</a></div>
-        <details id="adv"><summary data-t="adv">Avancé</summary>
-          <label for="url" data-t="url">Adresse de l'application (…/exec)</label><input id="url" placeholder="https://script.google.com/macros/s/…/exec">
-          <button id="url-save" class="btn ghost" type="button" data-t="save">Enregistrer</button></details>
       </div>
 
       <div class="panel" id="p-trial" hidden>
@@ -121,15 +118,15 @@
     var D = {
       fr: { tag: "La gestion simple et élégante de votre école de soutien : séances, élèves, paiements et calendrier partagé.", open: 'Ouvrir mon espace', code: "Code de l'école", openbtn: 'Ouvrir', trialLink: 'Vous dirigez une école ? Demandez un essai gratuit', adv: 'Avancé', url: "Adresse de l'application (…/exec)", save: 'Enregistrer', trialTitle: 'Demander un essai gratuit', tSchool: "Nom de l'école", tName: 'Votre nom', tMail: 'E-mail', tTel: 'Téléphone', tMsg: 'Message (facultatif)', send: 'Envoyer la demande', back: '← Retour',
         f1t: "📅 Un calendrier pour toute l'école", f1: "Élèves, parents et professeurs voient les séances ; changement d'horaire = notification immédiate.", f2t: '💳 Paiements par sessions', f2: 'Prorata automatique, reçus numérotés, relances avant et après l\'échéance.', f3t: '🎓 Suivi pédagogique', f3: 'Appel, notes, évaluations mensuelles, fichiers et messages aux parents.', f4t: '🌍 FR · العربية · EN', f4: "Interface complète en trois langues, thèmes de couleurs au choix de l'école.", trust: 'Elles nous font confiance', privacy: 'Confidentialité', launch: 'Ouverture de votre espace…',
-        needCode: "Saisissez le code de votre école.", needUrl: "Adresse de l'application manquante : ouvrez « Avancé » et collez l'adresse du déploiement (…/exec).", sent: 'Merci ! Nous vous recontactons très vite.', needMail: "Indiquez l'école et une adresse e-mail valide.", installT: 'Installer da3m', installS: "Accès direct depuis l'écran d'accueil.", installB: 'Installer', installIos: "Dans Safari : Partager → « Sur l'écran d'accueil »." },
+        needCode: "Saisissez le code de votre école.", needUrl: "Adresse de l'application indisponible : réessayez dans un instant.", sent: 'Merci ! Nous vous recontactons très vite.', needMail: "Indiquez l'école et une adresse e-mail valide.", installT: 'Installer da3m', installS: "Accès direct depuis l'écran d'accueil.", installB: 'Installer', installIos: "Dans Safari : Partager → « Sur l'écran d'accueil »." },
       ar: { tag: 'إدارة بسيطة وأنيقة لمدرسة الدعم: الحصص والتلاميذ والمدفوعات والجدول المشترك.', open: 'فتح فضائي', code: 'رمز المدرسة', openbtn: 'فتح', trialLink: 'تديرون مدرسة؟ اطلبوا تجربة مجانية', adv: 'خيارات متقدمة', url: 'عنوان التطبيق (…/exec)', save: 'حفظ', trialTitle: 'طلب تجربة مجانية', tSchool: 'اسم المدرسة', tName: 'اسمكم', tMail: 'البريد الإلكتروني', tTel: 'الهاتف', tMsg: 'رسالة (اختياري)', send: 'إرسال الطلب', back: 'رجوع →',
         f1t: '📅 جدول واحد للمدرسة', f1: 'التلاميذ والأولياء والأساتذة يرون الحصص؛ تغيير التوقيت = إشعار فوري.', f2t: '💳 مدفوعات بالحزم', f2: 'احتساب نسبي تلقائي، وصولات مرقمة، وتذكيرات قبل الاستحقاق وبعده.', f3t: '🎓 المتابعة البيداغوجية', f3: 'تسجيل الحضور، النقاط، التقييم الشهري، الملفات ورسائل للأولياء.', f4t: '🌍 FR · العربية · EN', f4: 'واجهة كاملة بثلاث لغات وألوان تختارها المدرسة.', trust: 'مدارس تثق بنا', privacy: 'الخصوصية', launch: 'جارٍ فتح فضائكم…',
-        needCode: 'أدخلوا رمز مدرستكم.', needUrl: 'عنوان التطبيق مفقود: افتحوا «خيارات متقدمة» والصقوا عنوان النشر (…/exec).', sent: 'شكرًا! سنتصل بكم قريبًا.', needMail: 'أدخلوا اسم المدرسة وبريدًا إلكترونيًا صحيحًا.', installT: 'تثبيت da3m', installS: 'وصول مباشر من الشاشة الرئيسية.', installB: 'تثبيت', installIos: 'في Safari: مشاركة ← «إضافة إلى الشاشة الرئيسية».' },
+        needCode: 'أدخلوا رمز مدرستكم.', needUrl: 'عنوان التطبيق غير متاح: أعيدوا المحاولة بعد قليل.', sent: 'شكرًا! سنتصل بكم قريبًا.', needMail: 'أدخلوا اسم المدرسة وبريدًا إلكترونيًا صحيحًا.', installT: 'تثبيت da3m', installS: 'وصول مباشر من الشاشة الرئيسية.', installB: 'تثبيت', installIos: 'في Safari: مشاركة ← «إضافة إلى الشاشة الرئيسية».' },
       en: { tag: 'Simple, elegant management for your tutoring school: classes, students, payments and a shared calendar.', open: 'Open my space', code: 'School code', openbtn: 'Open', trialLink: 'Run a school? Request a free trial', adv: 'Advanced', url: 'App address (…/exec)', save: 'Save', trialTitle: 'Request a free trial', tSchool: 'School name', tName: 'Your name', tMail: 'E-mail', tTel: 'Phone', tMsg: 'Message (optional)', send: 'Send request', back: '← Back',
         f1t: '📅 One calendar for the whole school', f1: 'Students, parents and teachers see the classes; a schedule change = instant notification.', f2t: '💳 Session-based payments', f2: 'Automatic proration, numbered receipts, reminders before and after the due date.', f3t: '🎓 Learning follow-up', f3: 'Attendance, grades, monthly evaluations, files and messages to parents.', f4t: '🌍 FR · العربية · EN', f4: 'Fully translated interface, colour themes chosen by each school.', trust: 'Trusted by', privacy: 'Privacy', launch: 'Opening your space…',
-        needCode: 'Enter your school code.', needUrl: 'App address missing: open "Advanced" and paste the deployment address (…/exec).', sent: 'Thank you! We will contact you shortly.', needMail: 'Enter the school and a valid e-mail.', installT: 'Install da3m', installS: 'Direct access from your home screen.', installB: 'Install', installIos: 'In Safari: Share → "Add to Home Screen".' }
+        needCode: 'Enter your school code.', needUrl: 'App address unavailable: please try again shortly.', sent: 'Thank you! We will contact you shortly.', needMail: 'Enter the school and a valid e-mail.', installT: 'Install da3m', installS: 'Direct access from your home screen.', installB: 'Install', installIos: 'In Safari: Share → "Add to Home Screen".' }
     };
-    var APP_URL = ''; // secours si exec.json est illisible : adresse /exec du déploiement Apps Script
+    var APP_URL = 'https://script.google.com/macros/s/AKfycbzGxrrBkoEnPHAwbFpBlUkMY6U5PfBMaQ46GO8Ia-j1bbBRGsQIhSTsbKHESBF2ciC0LQ/exec'; // adresse /exec du déploiement Apps Script (exec.json la remplace si elle change)
     var URL_RE = /^https:\/\/script\.google\.com\/(a\/macros\/[\w.-]+|macros)\/s\/[\w-]+\/(exec|dev)$/; var CODE_RE = /^[A-Z0-9][A-Z0-9_-]{1,19}$/;
     var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } }, del: function (k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } } };
     var $ = function (id) { return document.getElementById(id); };
@@ -148,23 +145,22 @@
     window.addEventListener('message', function (e) { if (e.data && /^(fr|ar|en)$/.test(e.data.d3Lang)) setLang(e.data.d3Lang, true); });
 
     var q = (/[?&]c=([\w-]+)/.exec(location.search) || [])[1]; if (q && CODE_RE.test(q.toUpperCase())) store.set('d3-code', q.toUpperCase());
-    if (/[?&]reset\b/.test(location.search)) { store.del('d3-code'); store.del('d3-url'); }
-    $('code').value = store.get('d3-code') || ''; $('url').value = store.get('d3-url') || '';
+    if (/[?&]reset\b/.test(location.search)) { store.del('d3-code'); }
+    $('code').value = store.get('d3-code') || '';
     function remoteUrl() { return new Promise(function (resolve) { var done = false; var t = setTimeout(function () { if (!done) { done = true; resolve(''); } }, 3000); fetch('exec.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { if (!done) { done = true; clearTimeout(t); resolve(j && j.url || ''); } }).catch(function () { if (!done) { done = true; clearTimeout(t); resolve(''); } }); }); }
-    function baseUrl() { return remoteUrl().then(function (r) { var c = [store.get('d3-url'), r, APP_URL].filter(function (u) { return u && URL_RE.test(u); }); return c[0] || ''; }); }
+    function baseUrl() { return remoteUrl().then(function (r) { var c = [r, APP_URL].filter(function (u) { return u && URL_RE.test(u); }); return c[0] || ''; }); }
 
     function launch() {
       var code = $('code').value.toUpperCase().replace(/[^A-Z0-9_-]/g, ''); if (!CODE_RE.test(code)) { $('code-msg').textContent = T('needCode'); return; }
       $('code-msg').textContent = ''; store.set('d3-code', code); $('landing').hidden = true; $('launching').hidden = false;
       baseUrl().then(function (base) {
-        if (!base) { $('launching').hidden = true; $('landing').hidden = false; $('adv').open = true; $('code-msg').textContent = T('needUrl'); return; }
+        if (!base) { $('launching').hidden = true; $('landing').hidden = false; $('code-msg').textContent = T('needUrl'); return; }
         var finish = function (url) { var dest = url + '#c=' + encodeURIComponent(code) + '&l=' + LANG + '&t=' + mode(); $('launching').hidden = true; $('prefs').setAttribute('data-in', '1'); $('app').src = dest; $('app').hidden = false; };
         var done = false; var tm = setTimeout(function () { if (!done) { done = true; finish(base); } }, 4000);
         fetch(base + '?resolve=' + encodeURIComponent(code), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { if (done) return; done = true; clearTimeout(tm); finish(j && j.ok && j.exec_url && URL_RE.test(j.exec_url) ? j.exec_url : base); }).catch(function () { if (!done) { done = true; clearTimeout(tm); finish(base); } });
       });
     }
     $('open-btn').addEventListener('click', launch); $('code').addEventListener('keydown', function (e) { if (e.key === 'Enter') launch(); });
-    $('url-save').addEventListener('click', function () { var u = $('url').value.trim(); if (u && !URL_RE.test(u)) { $('code-msg').textContent = T('needUrl'); return; } if (u) store.set('d3-url', u); else store.del('d3-url'); $('code-msg').textContent = ''; });
     $('to-trial').addEventListener('click', function () { $('p-open').hidden = true; $('p-trial').hidden = false; });
     $('to-open').addEventListener('click', function () { $('p-trial').hidden = true; $('p-open').hidden = false; });
     $('trial-btn').addEventListener('click', function () {
