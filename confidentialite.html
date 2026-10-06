@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>da3m — Confidentialité</title>
-<style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:0 auto;padding:24px 16px;color:#1b2233;background:#F5F1E6}h1{color:#0E1B40}h2{margin-top:1.6em;color:#1F3470}a{color:#1F3470}</style></head>
+<link rel="icon" type="image/png" href="favicon-32.png">
+<style>
+body{font:16px/1.7 system-ui,'Segoe UI','Noto Sans Arabic',sans-serif;max-width:760px;margin:0 auto;padding:24px 16px 60px;color:#1b2233;background:#F5F1E6}
+h1{color:#0E1B40}h2{margin-top:1.6em;color:#1F3470;font-size:1.1rem}a{color:#1F3470}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}.back{padding:6px 14px;border:1px solid #d9d3c0;border-radius:16px;text-decoration:none;font-size:.9rem;background:#fff;font-weight:600}.langs{display:flex;gap:8px;justify-content:flex-end}.langs a{padding:4px 12px;border:1px solid #d9d3c0;border-radius:16px;text-decoration:none;font-size:.85rem;background:#fff}.langs a.on{background:#1F3470;color:#fff;border-color:#1F3470}
+section[hidden]{display:none}
+@media (prefers-color-scheme:dark){body{background:#0b1020;color:#e9ecf5}h1{color:#E8B84A}h2{color:#9fb4ff}a{color:#E8B84A}.langs a{background:#151c33;border-color:#263055}.langs a.on{background:#E8B84A;color:#3a2a05;border-color:#E8B84A}.back{background:#151c33;border-color:#263055}}
+</style></head>
 <body>
+<div class="top"><a href="./" id="back" class="back">← Retour</a><div class="langs"><a href="#" data-l="fr">Français</a><a href="#" data-l="ar">العربية</a><a href="#" data-l="en">English</a></div></div>
+
+<section data-l="fr">
 <h1>Confidentialité — da3m</h1>
 <p>da3m est un logiciel de gestion pour écoles de soutien. Chaque école est responsable des données de ses élèves, parents et professeurs ; l'éditeur ne les utilise pas pour d'autres finalités.</p>
 <h2>Données traitées</h2>
@@ -12,5 +22,53 @@
 <p>Mots de passe stockés sous forme d'empreinte salée, blocage après plusieurs essais, droits contrôlés côté serveur pour chaque action, saisies neutralisées contre l'injection de formules. L'éditeur peut ouvrir l'espace d'une école en « mode gérant » pour le support ; chaque accès est journalisé.</p>
 <h2>Vos droits</h2>
 <p>Pour consulter, corriger ou supprimer vos données, adressez-vous à la direction de votre école. L'école peut exporter ses données et demander leur suppression à l'éditeur.</p>
+</section>
+
+<section data-l="ar" dir="rtl" hidden>
+<h1>الخصوصية — da3m</h1>
+<p>da3m برنامج لتسيير مدارس الدعم. كل مدرسة مسؤولة عن بيانات تلاميذها وأوليائها وأساتذتها؛ ولا يستعملها الناشر لأي غرض آخر.</p>
+<h2>البيانات المعالَجة</h2>
+<p>الهوية ومعلومات الاتصال (الاسم، البريد الإلكتروني، الهاتف)، التسجيلات، الحضور، النقاط والتقييمات، المدفوعات والوصولات. تخص بعض البيانات أطفالًا: ويجب أن يستند إدخالها إلى موافقة الولي أو الوصي، تجمعها المدرسة عند التسجيل.</p>
+<h2>أين تُخزَّن؟</h2>
+<p>في ملف Google Sheets خاص بكل مدرسة، على حساب Google الخاص بالناشر. أما الملفات التي يرفعها الأساتذة فتُخزَّن على Google Drive. لا تُشارَك أي بيانات بين المدارس؛ والأستاذ الذي يدرّس في عدة مدارس لا يرى إلا مداخيله المجمّعة.</p>
+<h2>الأمان</h2>
+<p>تُحفظ كلمات السر على شكل بصمة مملّحة، ويُمنع الدخول بعد عدة محاولات خاطئة، وتُراقَب الصلاحيات في الخادم عند كل عملية، وتُعطَّل المدخلات ضد حقن الصيغ. يمكن للناشر فتح فضاء مدرسة في «وضع المسيّر» لأغراض الدعم؛ ويُسجَّل كل دخول.</p>
+<h2>حقوقكم</h2>
+<p>للاطلاع على بياناتكم أو تصحيحها أو حذفها، توجّهوا إلى إدارة مدرستكم. يمكن للمدرسة تصدير بياناتها وطلب حذفها من الناشر.</p>
+</section>
+
+<section data-l="en" hidden>
+<h1>Privacy — da3m</h1>
+<p>da3m is management software for tutoring schools. Each school is responsible for the data of its students, parents and teachers; the publisher does not use it for any other purpose.</p>
+<h2>Data processed</h2>
+<p>Identity and contact details (name, e-mail, phone), enrolments, attendance, grades and evaluations, payments and receipts. Some data concerns children: it must be entered on the basis of the consent of the parent or guardian, collected by the school at enrolment.</p>
+<h2>Where is it stored?</h2>
+<p>In a Google Sheets workbook specific to each school, on the publisher's Google account. Files uploaded by teachers are stored on Google Drive. No data is shared between schools; a teacher working in several schools only sees their own combined earnings.</p>
+<h2>Security</h2>
+<p>Passwords are stored as salted hashes, sign-in is blocked after several failed attempts, permissions are checked on the server for every action, and entries are neutralised against formula injection. The publisher can open a school's space in "manager mode" for support; every access is logged.</p>
+<h2>Your rights</h2>
+<p>To view, correct or delete your data, contact your school's management. The school can export its data and ask the publisher to delete it.</p>
+</section>
+
 <p><small>© 2026 Rayane M. — Tous droits réservés.</small></p>
+<script>
+(function () {
+  var q = (/[?&]l=(fr|ar|en)\b/.exec(location.search) || [])[1]; var saved = ''; try { saved = localStorage.getItem('d3-lang') || ''; } catch (e) { /* ignore */ }
+  var dev = (navigator.language || 'fr').slice(0, 2); var lang = q || (/^(fr|ar|en)$/.test(saved) ? saved : (/^(ar|en)$/.test(dev) ? dev : 'fr'));
+  function show(l) {
+    document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('section').forEach(function (s) { s.hidden = s.getAttribute('data-l') !== l; });
+    document.querySelectorAll('.langs a').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-l') === l); });
+    document.getElementById('back').textContent = ({ fr: '← Retour', ar: 'رجوع →', en: '← Back' })[l];
+    document.title = 'da3m — ' + ({ fr: 'Confidentialité', ar: 'الخصوصية', en: 'Privacy' })[l];
+  }
+  document.querySelectorAll('.langs a').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); var l = a.getAttribute('data-l'); try { localStorage.setItem('d3-lang', l); } catch (x) { /* ignore */ } show(l); }); });
+  document.getElementById('back').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (window.opener) { window.close(); } else if (history.length > 1) { history.back(); } else { location.href = './'; } // onglet ouvert depuis l'appli : on le ferme ; sinon retour à la page précédente
+    setTimeout(function () { if (!window.closed) location.href = './'; }, 400);
+  });
+  show(lang);
+})();
+</script>
 </body></html>
