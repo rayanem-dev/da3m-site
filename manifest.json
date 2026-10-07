@@ -1,8 +1,8 @@
 {
   "id": "/da3m-site/",
-  "name": "da3m — دعم",
-  "short_name": "da3m",
-  "description": "da3m : gestion d'école de soutien — séances, élèves, paiements, calendrier partagé.",
+  "name": "Siraj — سراج",
+  "short_name": "Siraj",
+  "description": "Siraj : gestion d'école de soutien — séances, élèves, paiements, calendrier partagé.",
   "lang": "fr",
   "start_url": "/da3m-site/",
   "scope": "/da3m-site/",

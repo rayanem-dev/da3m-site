@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>da3m — دعم</title>
-  <meta name="description" content="da3m : la gestion simple et élégante des écoles de soutien (séances, élèves, paiements, calendrier partagé).">
+  <title>Siraj — سراج</title>
+  <meta name="description" content="Siraj سراج : Gestion intelligente et simple pour les écoles de soutien : cours, séances, élèves, paiements, évaluation et calendriers partagés.">
 
   <!-- PWA : installation sur l'écran d'accueil -->
   <link rel="manifest" href="manifest.json">
@@ -14,11 +14,11 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="da3m">
+  <meta name="apple-mobile-web-app-title" content="Siraj">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Fraunces:ital,wght@1,800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap">
   <style>
     :root { --p: #0E1B40; --p2: #1F3470; --a: #E8B84A; --bg: #F5F1E6; --card: #fff; --tx: #1b2233; --mu: #6b7385; --ln: #e4e0d3; }
     :root[data-theme="dark"] { --bg: #0b1020; --card: #151c33; --tx: #e9ecf5; --mu: #9aa3bd; --ln: #263055; }
@@ -34,10 +34,13 @@
     #app { flex: 1; width: 100%; border: 0; } #app[hidden] { display: none; }
 
     /* accueil */
-    .landing { flex: 1; overflow: auto; background: radial-gradient(circle at 15% 0%, rgba(232,184,74,.28), transparent 40%), radial-gradient(circle at 100% 100%, rgba(80,110,220,.35), transparent 45%), linear-gradient(160deg, #070E26, var(--p) 45%, var(--p2)); color: #fff; padding: 24px 16px 40px; }
-    .wrap { max-width: 980px; margin: 0 auto; }
+    .landing { position: relative; flex: 1; overflow: auto; background: radial-gradient(circle at 15% 0%, rgba(232,184,74,.28), transparent 40%), radial-gradient(circle at 100% 100%, rgba(80,110,220,.35), transparent 45%), linear-gradient(160deg, #070E26, var(--p) 45%, var(--p2)); color: #fff; padding: 24px 16px 40px; }
+    .landing::before, .landing::after { content: ''; position: absolute; top: 0; bottom: 0; width: min(24vw, 240px); background-size: cover; background-position: center; opacity: .5; pointer-events: none; }
+    .landing::before { left: 0; background-image: url(bg-left.webp); -webkit-mask-image: linear-gradient(to right, #000 35%, transparent); mask-image: linear-gradient(to right, #000 35%, transparent); }
+    .landing::after { right: 0; background-image: url(bg-right.webp); -webkit-mask-image: linear-gradient(to left, #000 35%, transparent); mask-image: linear-gradient(to left, #000 35%, transparent); }
+    .wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; }
     .hero { text-align: center; padding: 28px 0 10px; }
-    .hero img.logo { width: 112px; height: 112px; border-radius: 28px; box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+    .hero img.flame { height: 150px; filter: drop-shadow(0 8px 28px rgba(232,184,74,.35)); } .hero img.wordm { display: block; height: 54px; margin: 18px auto 4px; }
     .hero h1 { margin: 16px 0 6px; font: italic 800 2.6rem/1.1 'Fraunces', Georgia, serif; letter-spacing: .01em; } .hero h1 span { color: var(--a); font-family: 'Amiri', 'Noto Naskh Arabic', serif; font-style: normal; font-weight: 700; margin-inline-start: 10px; }
     .hero p { margin: 0 auto; max-width: 560px; opacity: .88; font-size: 1.05rem; }
     .panel { margin: 26px auto 0; max-width: 430px; background: rgba(255,255,255,.96); color: var(--tx); border-radius: 24px; padding: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
@@ -51,7 +54,7 @@
     .features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 34px 0 6px; }
     .feat { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 16px; backdrop-filter: blur(4px); } .feat b { display: block; color: var(--a); margin-bottom: 4px; } .feat span { font-size: .9rem; opacity: .88; }
     .trust { text-align: center; margin-top: 26px; opacity: .9; } .trust h3 { font-size: .9rem; font-weight: 600; opacity: .8; margin: 0 0 10px; } .trust .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; } .trust .chips span { padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,.12); font-size: .88rem; }
-    body.bdp-avec-prefs { padding-bottom: 0; } .landing { padding-bottom: 70px; } #foot-slot { margin-top: 30px; } #foot-slot .bdp-foot, #foot-slot .bdp-foot a { color: rgba(255,255,255,.72); } body.in-app .bdp-prefs { display: none; }
+    html body.bdp-avec-prefs { padding-bottom: 0; } .landing { padding-bottom: 70px; } #foot-slot { margin-top: 30px; } #foot-slot .bdp-foot, #foot-slot .bdp-foot a { color: rgba(255,255,255,.72); } body.in-app .bdp-prefs { display: none; }
     #launching { flex: 1; display: grid; place-items: center; text-align: center; color: var(--mu); } #launching .sp { width: 34px; height: 34px; border: 3px solid var(--ln); border-top-color: var(--a); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 12px; } @keyframes spin { to { transform: rotate(360deg); } }
     details { margin-top: 14px; font-size: .85rem; color: var(--mu); } details summary { cursor: pointer; }
   </style>
@@ -90,7 +93,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
 <body>
   <div id="install" class="install-banner" role="region">
     <img src="icon-192.png" alt="">
-    <div class="install-text"><strong id="i-title">Installer da3m</strong><span class="install-sub" id="i-sub">Accès direct depuis l'écran d'accueil.</span><span class="install-ios" id="i-ios" hidden></span></div>
+    <div class="install-text"><strong id="i-title">Installer Siraj</strong><span class="install-sub" id="i-sub">Accès direct depuis l'écran d'accueil.</span><span class="install-ios" id="i-ios" hidden></span></div>
     <button id="install-btn" type="button">Installer</button>
     <button id="install-close" class="install-close" type="button" aria-label="Fermer">×</button>
   </div>
@@ -98,9 +101,9 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
   <main id="landing" class="landing">
     <div class="wrap">
       <div class="hero">
-        <img class="logo" src="icon-512.png" alt="da3m">
-        <h1>da3m<span>دعم</span></h1>
-        <p data-t="tag">La gestion simple et élégante de votre école de soutien : séances, élèves, paiements et calendrier partagé.</p>
+        <img class="flame" src="siraj-mark.svg" alt="">
+        <img class="wordm" src="siraj-word.svg" alt="Siraj سراج">
+        <p data-t="tag">Gestion intelligente et simple pour les écoles de soutien : cours, séances, élèves, paiements, évaluation et calendriers partagés.</p>
       </div>
 
       <div class="panel" id="p-open">
@@ -137,7 +140,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
   </main>
 
   <div id="launching" hidden><div><div class="sp"></div><div data-t="launch">Ouverture de votre espace…</div></div></div>
-  <iframe id="app" title="da3m" hidden allow="clipboard-write; fullscreen"></iframe>
+  <iframe id="app" title="Siraj" hidden allow="clipboard-write; fullscreen"></iframe>
 
   <script>
 /*!
@@ -260,15 +263,15 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
   <script>
   (function () {
     var D = {
-      fr: { tag: "La gestion simple et élégante de votre école de soutien : séances, élèves, paiements et calendrier partagé.", open: 'Ouvrir mon espace', code: "Code de l'école", openbtn: 'Ouvrir', trialLink: 'Vous dirigez une école ? Demandez un essai gratuit', adv: 'Avancé', url: "Adresse de l'application (…/exec)", save: 'Enregistrer', trialTitle: 'Demander un essai gratuit', tSchool: "Nom de l'école", tName: 'Votre nom', tMail: 'E-mail', tTel: 'Téléphone', tMsg: 'Message (facultatif)', send: 'Envoyer la demande', back: '← Retour',
+      fr: { tag: "Gestion intelligente et simple pour les écoles de soutien : cours, séances, élèves, paiements, évaluation et calendriers partagés.", open: 'Ouvrir mon espace', code: "Code de l'école", openbtn: 'Ouvrir', trialLink: 'Vous dirigez une école ? Demandez un essai gratuit', adv: 'Avancé', url: "Adresse de l'application (…/exec)", save: 'Enregistrer', trialTitle: 'Demander un essai gratuit', tSchool: "Nom de l'école", tName: 'Votre nom', tMail: 'E-mail', tTel: 'Téléphone', tMsg: 'Message (facultatif)', send: 'Envoyer la demande', back: '← Retour',
         f1t: "📅 Un calendrier pour toute l'école", f1: "Élèves, parents et professeurs voient les séances ; changement d'horaire = notification immédiate.", f2t: '💳 Paiements par sessions', f2: 'Prorata automatique, reçus numérotés, relances avant et après l\'échéance.', f3t: '🎓 Suivi pédagogique', f3: 'Appel, notes, évaluations mensuelles, fichiers et messages aux parents.', f4t: '🌍 FR · العربية · EN', f4: "Interface complète en trois langues, thèmes de couleurs au choix de l'école.", trust: 'Elles nous font confiance', privacy: 'Confidentialité', launch: 'Ouverture de votre espace…',
-        needCode: "Saisissez le code de votre école.", needUrl: "Adresse de l'application indisponible : réessayez dans un instant.", sent: 'Merci ! Nous vous recontactons très vite.', needMail: "Indiquez l'école et une adresse e-mail valide.", installT: 'Installer da3m', installS: "Accès direct depuis l'écran d'accueil.", installB: 'Installer', installIos: "Dans Safari : Partager → « Sur l'écran d'accueil »." },
-      ar: { tag: 'إدارة بسيطة وأنيقة لمدرسة الدعم: الحصص والتلاميذ والمدفوعات والجدول المشترك.', open: 'فتح فضائي', code: 'رمز المدرسة', openbtn: 'فتح', trialLink: 'تديرون مدرسة؟ اطلبوا تجربة مجانية', adv: 'خيارات متقدمة', url: 'عنوان التطبيق (…/exec)', save: 'حفظ', trialTitle: 'طلب تجربة مجانية', tSchool: 'اسم المدرسة', tName: 'اسمكم', tMail: 'البريد الإلكتروني', tTel: 'الهاتف', tMsg: 'رسالة (اختياري)', send: 'إرسال الطلب', back: 'رجوع →',
+        needCode: "Saisissez le code de votre école.", needUrl: "Adresse de l'application indisponible : réessayez dans un instant.", sent: 'Merci ! Nous vous recontactons très vite.', needMail: "Indiquez l'école et une adresse e-mail valide.", installT: 'Installer Siraj', installS: "Accès direct depuis l'écran d'accueil.", installB: 'Installer', installIos: "Dans Safari : Partager → « Sur l'écran d'accueil »." },
+      ar: { tag: 'إدارة ذكية وبسيطة لمدارس الدعم: الدروس، الحصص، التلاميذ، المدفوعات، التقييم، والجداول الزمنية المشتركة', open: 'فتح فضائي', code: 'رمز المدرسة', openbtn: 'فتح', trialLink: 'تديرون مدرسة؟ اطلبوا تجربة مجانية', adv: 'خيارات متقدمة', url: 'عنوان التطبيق (…/exec)', save: 'حفظ', trialTitle: 'طلب تجربة مجانية', tSchool: 'اسم المدرسة', tName: 'اسمكم', tMail: 'البريد الإلكتروني', tTel: 'الهاتف', tMsg: 'رسالة (اختياري)', send: 'إرسال الطلب', back: 'رجوع →',
         f1t: '📅 جدول واحد للمدرسة', f1: 'التلاميذ والأولياء والأساتذة يرون الحصص؛ تغيير التوقيت = إشعار فوري.', f2t: '💳 مدفوعات بالحزم', f2: 'احتساب نسبي تلقائي، وصولات مرقمة، وتذكيرات قبل الاستحقاق وبعده.', f3t: '🎓 المتابعة البيداغوجية', f3: 'تسجيل الحضور، النقاط، التقييم الشهري، الملفات ورسائل للأولياء.', f4t: '🌍 FR · العربية · EN', f4: 'واجهة كاملة بثلاث لغات وألوان تختارها المدرسة.', trust: 'مدارس تثق بنا', privacy: 'الخصوصية', launch: 'جارٍ فتح فضائكم…',
-        needCode: 'أدخلوا رمز مدرستكم.', needUrl: 'عنوان التطبيق غير متاح: أعيدوا المحاولة بعد قليل.', sent: 'شكرًا! سنتصل بكم قريبًا.', needMail: 'أدخلوا اسم المدرسة وبريدًا إلكترونيًا صحيحًا.', installT: 'تثبيت da3m', installS: 'وصول مباشر من الشاشة الرئيسية.', installB: 'تثبيت', installIos: 'في Safari: مشاركة ← «إضافة إلى الشاشة الرئيسية».' },
-      en: { tag: 'Simple, elegant management for your tutoring school: classes, students, payments and a shared calendar.', open: 'Open my space', code: 'School code', openbtn: 'Open', trialLink: 'Run a school? Request a free trial', adv: 'Advanced', url: 'App address (…/exec)', save: 'Save', trialTitle: 'Request a free trial', tSchool: 'School name', tName: 'Your name', tMail: 'E-mail', tTel: 'Phone', tMsg: 'Message (optional)', send: 'Send request', back: '← Back',
+        needCode: 'أدخلوا رمز مدرستكم.', needUrl: 'عنوان التطبيق غير متاح: أعيدوا المحاولة بعد قليل.', sent: 'شكرًا! سنتصل بكم قريبًا.', needMail: 'أدخلوا اسم المدرسة وبريدًا إلكترونيًا صحيحًا.', installT: 'تثبيت سراج', installS: 'وصول مباشر من الشاشة الرئيسية.', installB: 'تثبيت', installIos: 'في Safari: مشاركة ← «إضافة إلى الشاشة الرئيسية».' },
+      en: { tag: 'Smart, simple management for tutoring schools: lessons, classes, students, payments, assessments and shared schedules.', open: 'Open my space', code: 'School code', openbtn: 'Open', trialLink: 'Run a school? Request a free trial', adv: 'Advanced', url: 'App address (…/exec)', save: 'Save', trialTitle: 'Request a free trial', tSchool: 'School name', tName: 'Your name', tMail: 'E-mail', tTel: 'Phone', tMsg: 'Message (optional)', send: 'Send request', back: '← Back',
         f1t: '📅 One calendar for the whole school', f1: 'Students, parents and teachers see the classes; a schedule change = instant notification.', f2t: '💳 Session-based payments', f2: 'Automatic proration, numbered receipts, reminders before and after the due date.', f3t: '🎓 Learning follow-up', f3: 'Attendance, grades, monthly evaluations, files and messages to parents.', f4t: '🌍 FR · العربية · EN', f4: 'Fully translated interface, colour themes chosen by each school.', trust: 'Trusted by', privacy: 'Privacy', launch: 'Opening your space…',
-        needCode: 'Enter your school code.', needUrl: 'App address unavailable: please try again shortly.', sent: 'Thank you! We will contact you shortly.', needMail: 'Enter the school and a valid e-mail.', installT: 'Install da3m', installS: 'Direct access from your home screen.', installB: 'Install', installIos: 'In Safari: Share → "Add to Home Screen".' }
+        needCode: 'Enter your school code.', needUrl: 'App address unavailable: please try again shortly.', sent: 'Thank you! We will contact you shortly.', needMail: 'Enter the school and a valid e-mail.', installT: 'Install Siraj', installS: 'Direct access from your home screen.', installB: 'Install', installIos: 'In Safari: Share → "Add to Home Screen".' }
     };
     var APP_URL = 'https://script.google.com/macros/s/AKfycbzGxrrBkoEnPHAwbFpBlUkMY6U5PfBMaQ46GO8Ia-j1bbBRGsQIhSTsbKHESBF2ciC0LQ/exec'; // adresse /exec du déploiement Apps Script (exec.json la remplace si elle change)
     var URL_RE = /^https:\/\/script\.google\.com\/(a\/macros\/[\w.-]+|macros)\/s\/[\w-]+\/(exec|dev)$/; var CODE_RE = /^[A-Z0-9][A-Z0-9_-]{1,19}$/;
@@ -325,11 +328,11 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     window.addEventListener('appinstalled', function () { banner.style.display = 'none'; });
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () { /* ignore */ });
 
-    var TXT = { 'Confidentialité': D.fr.privacy, 'Langue': 'Langue', 'Mode clair / sombre': 'Mode clair / sombre', 'Mode sombre': 'Mode sombre' };
-    var TXT_AR = { 'Confidentialité': D.ar.privacy, 'Langue': 'اللغة', 'Mode clair / sombre': 'الوضع الفاتح / الداكن', 'Mode sombre': 'الوضع الداكن' };
-    var TXT_EN = { 'Confidentialité': D.en.privacy, 'Langue': 'Language', 'Mode clair / sombre': 'Light / dark mode', 'Mode sombre': 'Dark mode' };
+    var TXT = { "Conditions d'utilisation": "Conditions d'utilisation", 'Confidentialité': D.fr.privacy, 'Langue': 'Langue', 'Mode clair / sombre': 'Mode clair / sombre', 'Mode sombre': 'Mode sombre' };
+    var TXT_AR = { "Conditions d'utilisation": 'شروط الاستعمال', 'Confidentialité': D.ar.privacy, 'Langue': 'اللغة', 'Mode clair / sombre': 'الوضع الفاتح / الداكن', 'Mode sombre': 'الوضع الداكن' };
+    var TXT_EN = { "Conditions d'utilisation": 'Terms of use', 'Confidentialité': D.en.privacy, 'Langue': 'Language', 'Mode clair / sombre': 'Light / dark mode', 'Mode sombre': 'Dark mode' };
     // Pied de page, langue et thème clair / sombre : bibliothèque basdepage (copie de rayanem-dev/lib), clés de stockage d3-lang / d3-theme.
-    BasDePage.monter({ cible: '#foot-slot', cle: 'd3', langue: LANG, nom: 'Propulsé par da3m', copyright: '© 2026 Rayane M. — Tous droits réservés', liens: [{ label: 'Confidentialité', href: 'confidentialite.html' }],
+    BasDePage.monter({ cible: '#foot-slot', cle: 'd3', langue: LANG, nom: 'Propulsé par Siraj', copyright: '© 2026 Rayane M. — Tous droits réservés', liens: [{ label: "Conditions d'utilisation", href: 'conditions.html' }, { label: 'Confidentialité', href: 'confidentialite.html' }],
       t: function (x) { return ((LANG === 'ar' ? TXT_AR : LANG === 'en' ? TXT_EN : TXT)[x]) || x; }, surLangue: function (code) { setLang(code); } });
     LANG = BasDePage.langue();
     paint();

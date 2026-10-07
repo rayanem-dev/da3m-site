@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>da3m — Confidentialité</title>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Siraj — Confidentialité</title>
 <link rel="icon" type="image/png" href="favicon-32.png">
 <style>
 body{font:16px/1.7 system-ui,'Segoe UI','Noto Sans Arabic',sans-serif;max-width:760px;margin:0 auto;padding:24px 16px 60px;color:#1b2233;background:#F5F1E6}
@@ -12,8 +12,10 @@ section[hidden]{display:none}
 <div class="top"><a href="./" id="back" class="back">← Retour</a><div class="langs"><a href="#" data-l="fr">Français</a><a href="#" data-l="ar">العربية</a><a href="#" data-l="en">English</a></div></div>
 
 <section data-l="fr">
-<h1>Confidentialité — da3m</h1>
-<p>da3m est un logiciel de gestion pour écoles de soutien. Chaque école est responsable des données de ses élèves, parents et professeurs ; l'éditeur ne les utilise pas pour d'autres finalités.</p>
+<h1>Confidentialité — Siraj</h1>
+<p>Siraj est un logiciel de gestion pour écoles de soutien. Chaque école est responsable des données de ses élèves, parents et professeurs ; l'éditeur ne les utilise pas pour d'autres finalités.</p>
+<h2>Qui est responsable ?</h2>
+<p>L'école est responsable du traitement des données de ses élèves, parents et professeurs ; Siraj est son prestataire technique. Chaque utilisateur accepte les <a href="conditions.html?l=fr">conditions d'utilisation</a> à sa première connexion (la date et la version acceptées sont conservées). Pour les enfants, l'école recueille le consentement écrit du parent ou tuteur à l'inscription.</p>
 <h2>Données traitées</h2>
 <p>Identité et coordonnées (nom, e-mail, téléphone), inscriptions, présences, notes et évaluations, paiements et reçus. Des données concernent des enfants : leur saisie doit reposer sur le consentement du parent ou tuteur, recueilli par l'école à l'inscription.</p>
 <h2>Où sont-elles stockées ?</h2>
@@ -25,8 +27,10 @@ section[hidden]{display:none}
 </section>
 
 <section data-l="ar" dir="rtl" hidden>
-<h1>الخصوصية — da3m</h1>
-<p>da3m برنامج لتسيير مدارس الدعم. كل مدرسة مسؤولة عن بيانات تلاميذها وأوليائها وأساتذتها؛ ولا يستعملها الناشر لأي غرض آخر.</p>
+<h1>الخصوصية — سراج</h1>
+<p>سراج برنامج لتسيير مدارس الدعم. كل مدرسة مسؤولة عن بيانات تلاميذها وأوليائها وأساتذتها؛ ولا يستعملها الناشر لأي غرض آخر.</p>
+<h2>من المسؤول؟</h2>
+<p>المدرسة هي المسؤولة عن معالجة بيانات تلاميذها وأوليائها وأساتذتها؛ و سراج مزوّدها التقني. يوافق كل مستعمل على <a href="conditions.html?l=ar">شروط الاستعمال</a> عند أول دخول (يُحتفظ بتاريخ وإصدار الموافقة). وبالنسبة للأطفال، تجمع المدرسة الموافقة الكتابية للولي أو الوصي عند التسجيل.</p>
 <h2>البيانات المعالَجة</h2>
 <p>الهوية ومعلومات الاتصال (الاسم، البريد الإلكتروني، الهاتف)، التسجيلات، الحضور، النقاط والتقييمات، المدفوعات والوصولات. تخص بعض البيانات أطفالًا: ويجب أن يستند إدخالها إلى موافقة الولي أو الوصي، تجمعها المدرسة عند التسجيل.</p>
 <h2>أين تُخزَّن؟</h2>
@@ -38,8 +42,10 @@ section[hidden]{display:none}
 </section>
 
 <section data-l="en" hidden>
-<h1>Privacy — da3m</h1>
-<p>da3m is management software for tutoring schools. Each school is responsible for the data of its students, parents and teachers; the publisher does not use it for any other purpose.</p>
+<h1>Privacy — Siraj</h1>
+<p>Siraj is management software for tutoring schools. Each school is responsible for the data of its students, parents and teachers; the publisher does not use it for any other purpose.</p>
+<h2>Who is responsible?</h2>
+<p>The school is responsible for processing the data of its students, parents and teachers; Siraj is its technical provider. Each user accepts the <a href="conditions.html?l=en">terms of use</a> at first sign-in (the date and version accepted are kept). For children, the school collects the written consent of the parent or guardian at enrolment.</p>
 <h2>Data processed</h2>
 <p>Identity and contact details (name, e-mail, phone), enrolments, attendance, grades and evaluations, payments and receipts. Some data concerns children: it must be entered on the basis of the consent of the parent or guardian, collected by the school at enrolment.</p>
 <h2>Where is it stored?</h2>
@@ -60,7 +66,7 @@ section[hidden]{display:none}
     document.querySelectorAll('section').forEach(function (s) { s.hidden = s.getAttribute('data-l') !== l; });
     document.querySelectorAll('.langs a').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-l') === l); });
     document.getElementById('back').textContent = ({ fr: '← Retour', ar: 'رجوع →', en: '← Back' })[l];
-    document.title = 'da3m — ' + ({ fr: 'Confidentialité', ar: 'الخصوصية', en: 'Privacy' })[l];
+    document.title = 'سراج — ' + ({ fr: 'Confidentialité', ar: 'الخصوصية', en: 'Privacy' })[l];
   }
   document.querySelectorAll('.langs a').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); var l = a.getAttribute('data-l'); try { localStorage.setItem('d3-lang', l); } catch (x) { /* ignore */ } show(l); }); });
   document.getElementById('back').addEventListener('click', function (e) {
