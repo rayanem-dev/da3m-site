@@ -175,7 +175,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     prefs: true,                 // false : pas de sélecteur de langue ni de bascule de thème
     cle: 'bdp',                  // préfixe du stockage local : <cle>-lang, <cle>-theme
     t: null,                     // function (texte) : traduction des libellés (facultatif)
-    titres: { aJour: '✓ Tout est à jour', retardServeur: '⚠ Le serveur est en retard : à déployer', retardSite: '⚠ Le site est en retard : à publier (patienter 1 à 2 minutes)', actualiser: 'Relire les données depuis le serveur', langue: 'Langue', theme: 'Mode clair / sombre', sombre: 'Mode sombre' }
+    titres: { aJour: '✓ Tout est à jour', retardServeur: '⚠ Le serveur est en retard : à déployer', retardSite: '⚠ Le site est en retard : à publier (patienter 1 à 2 minutes)', inconnu: '? Version du site illisible (fichier version.json absent ou hors ligne)', actualiser: 'Relire les données depuis le serveur', langue: 'Langue', theme: 'Mode clair / sombre', sombre: 'Mode sombre' }
   };
   var opt = null; var elPied = null; var elPrefs = null;
 
@@ -229,7 +229,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
       lien.textContent += c === 0 ? ' ✓' : ' ⚠';
       lien.title = c === 0 ? tr(opt.titres.aJour) : (c < 0 ? tr(opt.titres.retardServeur) + ' (v' + opt.version + ' → v' + site + ')' : tr(opt.titres.retardSite) + ' (v' + site + ' → v' + opt.version + ')');
       lien.className = 'bdp-etat';
-    }).catch(function () { /* hors ligne ou fichier absent : aucun symbole */ });
+    }).catch(function () { lien.textContent += ' ?'; lien.title = tr(opt.titres.inconnu); lien.className = 'bdp-etat'; /* hors ligne ou fichier absent : « ? » plutôt que rien */ });
   }
   function dessinerPrefs() {
     if (elPrefs) elPrefs.remove(); elPrefs = null;
