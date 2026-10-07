@@ -163,7 +163,8 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     versionLien: '',             // ex. '#/nouveautes' (lien de la version) ; vide = texte simple
     surVersion: null,            // function (ev) : à la place du lien (routeur d'une application monopage)
     comparer: null,              // { urlSite: 'version.json' } : compare avec la version publiée du site → ✓ à jour, ⚠ à déployer (réservé à l'éditeur : ne passer l'option que pour lui)
-    copyright: '',               // ex. '© 2026 Rayane M. — Tous droits réservés'
+    copyright: '',               // ex. '© 2026 JawlaDev — Tous droits réservés'
+    copyrightLien: null,         // { texte: 'JawlaDev', href: 'https://rayanem-dev.github.io/JawlaDev/' } : transforme ce mot du copyright en lien (nouvel onglet)
     liens: [],                   // [{ label, href, titre, surClic }]
     actualiser: null,            // function () : ajoute le lien « ↻ Actualiser » ; ou { label, titre, surClic }
     langues: [['fr', 'Français'], ['ar', 'العربية'], ['en', 'English']],
@@ -189,7 +190,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     for (var i = 2; i < arguments.length; i += 1) { var c = arguments[i]; if (c !== null && c !== undefined) n.append(c.nodeType ? c : document.createTextNode(c)); }
     return n;
   }
-  function cmpVersion(a, b) { var x = String(a).split('.').map(Number); var y = String(b).split('.').map(Number); for (var i = 0; i < 3; i += 1) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0) ? 1 : -1; } return 0; }
+  function cmpVersion(a, b) { var x = String(a).split('.').map(Number); var y = String(b).split('.').map(Number); for (var i = 0; i < Math.max(x.length, y.length); i += 1) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0) ? 1 : -1; } return 0; }
 
   // ----- langue -----
   function langueActive() { var l = stock('lang') || opt.langue; return opt.langues.some(function (x) { return x[0] === l; }) ? l : opt.langues[0][0]; }
@@ -204,11 +205,12 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     if (opt.nom) ligne1.push(opt.nom + ' · ');
     if (opt.version) {
       var texte = tr('version') + ' ' + opt.version + (opt.versionLien || opt.surVersion ? ' (' + tr('nouveautés') + ')' : '');
-      var a = opt.versionLien || opt.surVersion ? el('a', { href: opt.versionLien || '#', onclick: opt.surVersion ? function (ev) { ev.preventDefault(); opt.surVersion(ev); } : null }, texte) : document.createTextNode(texte);
+      var a = opt.versionLien || opt.surVersion ? el('a', { href: opt.versionLien || '#', onclick: opt.surVersion ? function (ev) { ev.preventDefault(); opt.surVersion(ev); } : null }, texte) : el('span', null, texte);
       etat = a; ligne1.push(a);
     }
     if (ligne1.length) { pied.append.apply(pied, ligne1); pied.append(el('br')); }
-    pied.append(opt.copyright || '');
+    var cr = opt.copyright || ''; var cl = opt.copyrightLien; var ci = cl && cl.texte ? cr.indexOf(cl.texte) : -1;
+    if (ci >= 0) pied.append(cr.slice(0, ci), el('a', { href: cl.href || '#', target: '_blank', rel: 'noopener', title: cl.titre || null }, cl.texte), cr.slice(ci + cl.texte.length)); else pied.append(cr);
     (opt.liens || []).forEach(function (l) {
       pied.append(' · ', el('a', { href: l.href || '#', title: l.titre ? tr(l.titre) : null, onclick: l.surClic ? function (ev) { ev.preventDefault(); l.surClic(ev); } : null }, tr(l.label)));
     });
@@ -332,7 +334,7 @@ body.bdp-avec-prefs { padding-bottom: 46px; } /* évite que les préférences ma
     var TXT_AR = { "Conditions d'utilisation": 'شروط الاستعمال', 'Confidentialité': D.ar.privacy, 'Langue': 'اللغة', 'Mode clair / sombre': 'الوضع الفاتح / الداكن', 'Mode sombre': 'الوضع الداكن' };
     var TXT_EN = { "Conditions d'utilisation": 'Terms of use', 'Confidentialité': D.en.privacy, 'Langue': 'Language', 'Mode clair / sombre': 'Light / dark mode', 'Mode sombre': 'Dark mode' };
     // Pied de page, langue et thème clair / sombre : bibliothèque basdepage (copie de rayanem-dev/lib), clés de stockage d3-lang / d3-theme.
-    BasDePage.monter({ cible: '#foot-slot', cle: 'd3', langue: LANG, nom: 'Propulsé par Siraj', copyright: '© 2026 Rayane M. — Tous droits réservés', liens: [{ label: "Conditions d'utilisation", href: 'conditions.html' }, { label: 'Confidentialité', href: 'confidentialite.html' }],
+    BasDePage.monter({ cible: '#foot-slot', cle: 'd3', langue: LANG, nom: 'Propulsé par Siraj', copyright: '© 2026 JawlaDev — Tous droits réservés', copyrightLien: { texte: 'JawlaDev', href: 'https://rayanem-dev.github.io/JawlaDev/' }, liens: [{ label: "Conditions d'utilisation", href: 'conditions.html' }, { label: 'Confidentialité', href: 'confidentialite.html' }],
       t: function (x) { return ((LANG === 'ar' ? TXT_AR : LANG === 'en' ? TXT_EN : TXT)[x]) || x; }, surLangue: function (code) { setLang(code); } });
     LANG = BasDePage.langue();
     paint();
